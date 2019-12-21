@@ -11,99 +11,99 @@ class TestQuickTreeStruct(unittest.TestCase):
         return os.path.join(tests_path, "test_dirs", dir_name)
 
     def test_empty(self):
-        test_dir_path = self._get_test_dir_path("empty")
+        test_dir_path = self._get_test_dir_path("test_empty")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {},
-            "files": []
+            "files": set()
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_one_file(self):
-        test_dir_path = self._get_test_dir_path("one_file")
+        test_dir_path = self._get_test_dir_path("test_one_file")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {},
-            "files": ["spam"]
+            "files": {"spam"}
         }
 
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_multi_files(self):
-        test_dir_path = self._get_test_dir_path("multi_files")
+        test_dir_path = self._get_test_dir_path("test_multi_files")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {},
-            "files": ["spam", "ham", "eggs"]
+            "files": {"spam", "ham", "eggs"}
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_one_dir(self):
-        test_dir_path = self._get_test_dir_path("one_dir")
+        test_dir_path = self._get_test_dir_path("test_one_dir")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {
                 "foo": os.path.join(test_dir_path, "foo")
             },
-            "files": []
+            "files": set()
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_multi_dirs(self):
-        test_dir_path = self._get_test_dir_path("multi_dirs")
+        test_dir_path = self._get_test_dir_path("test_multi_dirs")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {
                 "foo": os.path.join(test_dir_path, "foo"),
                 "bar": os.path.join(test_dir_path, "bar")
             },
-            "files": []
+            "files": set()
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_one_file_one_dir(self):
-        test_dir_path = self._get_test_dir_path("one_file_one_dir")
+        test_dir_path = self._get_test_dir_path("test_one_file_one_dir")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {
                 "foo": os.path.join(test_dir_path, "foo")
             },
-            "files": ["spam"]
+            "files": {"spam"}
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_multi_files_one_dir(self):
-        test_dir_path = self._get_test_dir_path("multi_files_one_dir")
+        test_dir_path = self._get_test_dir_path("test_multi_files_one_dir")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {
                 "foo": os.path.join(test_dir_path, "foo")
             },
-            "files": ["spam", "ham", "eggs"]
+            "files": {"spam", "ham", "eggs"}
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_one_file_multi_dirs(self):
-        test_dir_path = self._get_test_dir_path("one_file_multi_dirs")
+        test_dir_path = self._get_test_dir_path("test_one_file_multi_dirs")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {
                 "foo": os.path.join(test_dir_path, "foo"),
                 "bar": os.path.join(test_dir_path, "bar")
             },
-            "files": ["spam"]
+            "files": {"spam"}
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
     def test_multi_files_multi_dirs(self):
-        test_dir_path = self._get_test_dir_path("multi_files_multi_dirs")
+        test_dir_path = self._get_test_dir_path("test_multi_files_multi_dirs")
         actual_struct = helpers.get_quicktree_struct(test_dir_path)
         expected_struct = {
             "dirs": {
                 "foo": os.path.join(test_dir_path, "foo"),
                 "bar": os.path.join(test_dir_path, "bar")
             },
-            "files": ["spam", "ham", "eggs"]
+            "files": {"spam", "ham", "eggs"}
         }
         self.assertDictEqual(expected_struct, actual_struct)
 
