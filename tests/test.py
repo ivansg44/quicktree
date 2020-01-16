@@ -5,6 +5,29 @@ from quicktree import helpers
 
 
 class TestQuickTreeStruct(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        """Remove ``.gitkeep`` files.
+
+        This makes directories that are meant to be empty truly empty.
+        """
+        for root, _, files in os.walk(cls._get_test_dir_path("")):
+            for file in files:
+                if file == ".gitkeep":
+                    os.remove(os.path.join(root, file))
+
+    @classmethod
+    def tearDownClass(cls):
+        """Add ``.gitkeep`` files.
+
+        This makes empty directories trackable.
+        """
+        for root, dirs, files in os.walk(cls._get_test_dir_path("")):
+            # Empty directory
+            if not dirs and not files:
+                with open(os.path.join(root, ".gitkeep"), "w") as _:
+                    pass
+
     @staticmethod
     def _get_test_dir_path(dir_name):
         tests_path = os.path.dirname(os.path.abspath(__file__))

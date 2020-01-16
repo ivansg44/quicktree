@@ -2,7 +2,11 @@ import os
 from typing import NamedTuple
 
 
-class QuickTreeStruct(NamedTuple):
+QuickTreeStruct_ =\
+    NamedTuple("QuickTreeStruct", [("dirs", dict), ("files", set)])
+
+
+class QuickTreeStruct(QuickTreeStruct_):
     """Underlying data structure for trees displayed in stdout.
 
     Meant to contain information on all directories and files found in
@@ -18,8 +22,7 @@ class QuickTreeStruct(NamedTuple):
         }
     ``}``
     """
-    dirs: dict
-    files: set
+    pass
 
 
 def get_quicktree_struct(root):
