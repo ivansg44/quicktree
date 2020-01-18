@@ -4,4 +4,6 @@ python:
   - "3.6"
   - "3.7"
   - "3.8"
-script: python -m tests.test
+install: pip install coveralls
+script: coverage run --source=quicktree -m tests.test
+after_success: coveralls
