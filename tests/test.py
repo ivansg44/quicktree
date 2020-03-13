@@ -4,7 +4,7 @@ import unittest
 from quicktree import helpers
 
 
-class TestQuickTreeStruct(unittest.TestCase):
+class TestGetQuickTreeStruct(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Remove ``.gitkeep`` files.
@@ -129,6 +129,151 @@ class TestQuickTreeStruct(unittest.TestCase):
             "files": {"spam", "ham", "eggs"}
         }
         self.assertDictEqual(expected_struct, actual_struct)
+
+
+class TestMapQuickTreeDirs(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        TestGetQuickTreeStruct.setUpClass()
+
+    @classmethod
+    def tearDownClass(cls):
+        TestGetQuickTreeStruct.tearDownClass()
+
+    @staticmethod
+    def _get_test_dir_path(dir_name):
+        return TestGetQuickTreeStruct._get_test_dir_path(dir_name)
+
+    @staticmethod
+    def _get_empty_map():
+        return {
+            "0": [], "1": [], "2": [], "3": [], "4": [], "5": [], "6": [],
+            "7": [], "8": [], "9": [], "a": [], "b": [], "c": [], "d": [],
+            "e": [], "f": [], "g": [], "h": [], "i": [], "j": [], "k": [],
+            "l": [], "m": [], "n": [], "o": [], "p": [], "q": [], "r": [],
+            "s": [], "t": [], "u": [], "v": [], "w": [], "x": [], "y": [],
+            "z": []
+        }
+
+    @staticmethod
+    def _get_alpha_num_order():
+        return ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b",
+                "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+                "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+    def test_empty(self):
+        test_dir_path = self._get_test_dir_path("test_empty")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_one_file(self):
+        test_dir_path = self._get_test_dir_path("test_one_file")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_multi_files(self):
+        test_dir_path = self._get_test_dir_path("test_multi_files")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_one_dir(self):
+        test_dir_path = self._get_test_dir_path("test_one_dir")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        expected_map["0"] += ["foo"]
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_multi_dirs(self):
+        test_dir_path = self._get_test_dir_path("test_multi_dirs")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        expected_map["0"] += ["bar"]
+        expected_map["1"] += ["foo"]
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_one_file_one_dir(self):
+        test_dir_path = self._get_test_dir_path("test_one_file_one_dir")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        expected_map["0"] += ["foo"]
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_multi_files_one_dir(self):
+        test_dir_path = self._get_test_dir_path("test_multi_files_one_dir")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        expected_map["0"] += ["foo"]
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_one_file_multi_dirs(self):
+        test_dir_path = self._get_test_dir_path("test_one_file_multi_dirs")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        expected_map["0"] += ["bar"]
+        expected_map["1"] += ["foo"]
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_multi_files_multi_dirs(self):
+        test_dir_path = self._get_test_dir_path("test_multi_files_multi_dirs")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+        expected_map["0"] += ["bar"]
+        expected_map["1"] += ["foo"]
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_36_dirs(self):
+        test_dir_path = self._get_test_dir_path("test_36_dirs")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+
+        alpha_num_order = self._get_alpha_num_order()
+        sorted_dirs = sorted(range(36), key=str)
+        for i in range(len(alpha_num_order)):
+            expected_map[alpha_num_order[i]] += [str(sorted_dirs[i])]
+
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_37_dirs(self):
+        test_dir_path = self._get_test_dir_path("test_37_dirs")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+
+        alpha_num_order = self._get_alpha_num_order()
+        sorted_dirs = sorted(range(37), key=str)
+        for i in range(len(alpha_num_order)):
+            expected_map[alpha_num_order[i]] += [str(sorted_dirs[i])]
+        expected_map["0"] += ["9"]
+
+        self.assertDictEqual(expected_map, actual_map)
+
+    def test_73_dirs(self):
+        test_dir_path = self._get_test_dir_path("test_73_dirs")
+        struct = helpers.get_quicktree_struct(test_dir_path)
+        actual_map = helpers.map_quicktree_dirs(struct)
+        expected_map = self._get_empty_map()
+
+        alpha_num_order = self._get_alpha_num_order()
+        sorted_dirs = sorted(range(73), key=str)
+        for i in range(len(alpha_num_order)):
+            expected_map[alpha_num_order[i]] += [str(sorted_dirs[i])]
+            expected_map[alpha_num_order[i]] += [str(sorted_dirs[i+36])]
+        expected_map["0"] += ["9"]
+
+        self.assertDictEqual(expected_map, actual_map)
 
 
 if __name__ == "__main__":
