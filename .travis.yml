@@ -7,3 +7,5 @@ python:
 install: pip install coveralls
 script: coverage run --source=quicktree -m tests.test
 after_success: coveralls
+notifications:
+  email: false
