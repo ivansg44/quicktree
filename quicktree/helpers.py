@@ -61,3 +61,8 @@ def map_quicktree_dirs(struct):
         ret[ret_key] += [sorted_dirs_list[i]]
 
     return ret
+
+
+def get_output_str(struct, map):
+    """TODO: stub"""
+    return ""

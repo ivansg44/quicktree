@@ -276,5 +276,10 @@ class TestMapQuickTreeDirs(unittest.TestCase):
         self.assertDictEqual(expected_map, actual_map)
 
 
+class TestGetOutputStr(unittest.TestCase):
+    def test_stub(self):
+        self.assertTrue(False)
+
+
 if __name__ == "__main__":
     unittest.main()
