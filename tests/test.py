@@ -294,7 +294,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -305,7 +305,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "spam\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -316,7 +316,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "eggs ham spam\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -327,7 +327,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "0: foo\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -338,7 +338,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "0: bar 1: foo\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -349,7 +349,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "spam\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "0: foo\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -360,7 +360,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "eggs ham spam\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "0: foo\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -371,7 +371,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "spam\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "0: foo 1: bar\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -382,7 +382,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "eggs ham spam\n" \
-                              "Folders\n" \
+                              "Subdirectories\n" \
                               "0: foo 1: bar\n"
         self.assertEqual(expected_output_str, actual_output_str)
 
@@ -393,7 +393,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "eggs ham spam\n" \
-                              "Folders\n"
+                              "Subdirectories\n"
 
         alpha_num_order = self._get_alpha_num_order()
         sorted_dirs = sorted(range(36), key=str)
@@ -411,7 +411,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "eggs ham spam\n" \
-                              "Folders\n"
+                              "Subdirectories\n"
 
         alpha_num_order = self._get_alpha_num_order()
         sorted_dirs = sorted(range(37), key=str)
@@ -429,7 +429,7 @@ class TestGetOutputStr(unittest.TestCase):
         actual_output_str = helpers.get_output_str(struct, map)
         expected_output_str = "Current Directory\n" \
                               "eggs ham spam\n" \
-                              "Folders\n"
+                              "Subdirectories\n"
 
         alpha_num_order = self._get_alpha_num_order()
         sorted_dirs = sorted(range(73), key=str)
